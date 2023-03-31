@@ -103,7 +103,7 @@ const ProductList = ({ item }) => {
 
         <td className="px-6 py-4 text-center">{item.discountPercentage}</td>
         <td className="px-6 py-4 text-center flex justify-center items-center">
-          {item.primary_variants.map((variant, i) => (
+          {item?.primary_variants?.map((variant, i) => (
             <div key={i}>
               <div
                 className={`${
