@@ -256,7 +256,9 @@ const ProductList = ({ item }) => {
               </th>
               <td class="px-6 py-4 text-center">2852</td>
               <td class="px-6 py-4 text-center">{item.price}</td>
-              <td class="px-6 py-4 text-center">{variant.discountPercentage}</td>
+              <td class="px-6 py-4 text-center">
+                {variant.discountPercentage}
+              </td>
               <td class="px-6 py-4 text-center">{item.primary_variant_name}</td>
               <td class="px-6 py-4 text-center">S,M,L+3</td>
               <td class="px-6 py-4">{variant.inventory}</td>
@@ -284,7 +286,9 @@ const ProductList = ({ item }) => {
                   </th>
                   <td class="px-6 py-4 text-center">2582</td>
                   <td class="px-6 py-4 text-center">{secondary.price}</td>
-                  <td class="px-6 py-4">{secondary.discountPercentage}</td>
+                  <td class="px-6 py-4 text-center">
+                    {secondary.discountPercentage}
+                  </td>
                   <td class="px-6 py-4 text-center">NA</td>
                   <td class="px-6 py-4 text-center">NA</td>
                   <td class="px-6 py-4 text-center">{secondary.inventory}</td>
