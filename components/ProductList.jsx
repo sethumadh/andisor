@@ -132,7 +132,7 @@ const ProductList = ({ item }) => {
         <td className="px-6 py-4 text-center">S,M,L+3</td>
         <td className="px-6 py-4 text-center">{item.inventory}</td>
         <td className="px-6 py-4 text-center">{item.leadTime}</td>
-        <td className="px-6 py-4 text-right w-40">
+        <td className="px-6 py-4 text-center w-40">
           {!isEditable ? (
             <div className="text-center flex justify-center items-center">
               <button
