@@ -81,7 +81,7 @@ const ProductList = ({ item }) => {
               />
             </div>
           ) : (
-            <p className="px-6 py-4 text-center">{item.stock}</p>
+            <p className="px-6 py-4 text-center"> {item.stock ? item.stock : "2852"}</p>
           )}
         </td>
         <td>
