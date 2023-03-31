@@ -16,7 +16,7 @@ function ProductContextProvider(props) {
           const json = await response.json()
           if (response.ok) {
             localData = localStorage.setItem("andisor", JSON.stringify(json))
-            setData(localData)
+            setData(json)
           }
         } catch (error) {
           console.log(error)
