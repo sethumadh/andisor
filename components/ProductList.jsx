@@ -254,13 +254,13 @@ const ProductList = ({ item }) => {
                   } py-1 px-1 rounded-full`}
                 >{`${variant?.active ? "Active" : ""} `}</span>
               </th>
-              <td class="px-6 py-4">2852</td>
-              <td class="px-6 py-4">{item.price}</td>
-              <td class="px-6 py-4">{variant.discountPercentage}</td>
-              <td class="px-6 py-4">{item.primary_variant_name}</td>
-              <td class="px-6 py-4">S,M,L+3</td>
+              <td class="px-6 py-4 text-center">2852</td>
+              <td class="px-6 py-4 text-center">{item.price}</td>
+              <td class="px-6 py-4 text-center">{variant.discountPercentage}</td>
+              <td class="px-6 py-4 text-center">{item.primary_variant_name}</td>
+              <td class="px-6 py-4 text-center">S,M,L+3</td>
               <td class="px-6 py-4">{variant.inventory}</td>
-              <td class="px-6 py-4">{item.leadTime}</td>
+              <td class="px-6 py-4 text-center">{item.leadTime}</td>
               <td class="px-6 py-4 text-right">
                 <a
                   href="#"
@@ -282,13 +282,13 @@ const ProductList = ({ item }) => {
                     {/* {item.title} */}
                     {secondary.name}
                   </th>
-                  <td class="px-6 py-4">2582</td>
-                  <td class="px-6 py-4">{secondary.price}</td>
+                  <td class="px-6 py-4 text-center">2582</td>
+                  <td class="px-6 py-4 text-center">{secondary.price}</td>
                   <td class="px-6 py-4">{secondary.discountPercentage}</td>
-                  <td class="px-6 py-4">NA</td>
-                  <td class="px-6 py-4">NA</td>
-                  <td class="px-6 py-4">{secondary.inventory}</td>
-                  <td class="px-6 py-4">{item.leadTime}</td>
+                  <td class="px-6 py-4 text-center">NA</td>
+                  <td class="px-6 py-4 text-center">NA</td>
+                  <td class="px-6 py-4 text-center">{secondary.inventory}</td>
+                  <td class="px-6 py-4 text-center">{item.leadTime}</td>
                   <td class="px-6 py-4 text-right">
                     <a
                       href="#"
