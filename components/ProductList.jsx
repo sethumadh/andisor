@@ -103,21 +103,31 @@ const ProductList = ({ item }) => {
 
         <td className="px-6 py-4 text-center">{item.discountPercentage}</td>
         <td className="px-6 py-4 text-center flex justify-center items-center">
-          <div
-            className={`bg-red rounded-full w-4 h-4 ${
-              item.primary_variants[0].name === "Red" ? "block" : "hidden"
-            }`}
-          ></div>
-          <div
-            className={`bg-blue rounded-full w-4 h-4 ${
-              item.primary_variants[1].name === "Blue" ? "block" : "hidden"
-            }`}
-          ></div>
-          <div
-            className={`bg-green rounded-full w-4 h-4 ${
-              item.primary_variants[2].name === "Green" ? "block" : "hidden"
-            }`}
-          ></div>
+          {item.primary_variants.map((variant, i) => (
+            <div key={i}>
+              <div
+                className={`${
+                  variant.name == "Red"
+                    ? "block bg-red rounded-full w-4 h-4"
+                    : "hidden"
+                }`}
+              ></div>
+              <div
+                className={`${
+                  variant.name == "Blue"
+                    ? "block bg-blue rounded-full w-4 h-4"
+                    : "hidden"
+                }`}
+              ></div>
+              <div
+                className={`${
+                  variant.name == "Green"
+                    ? "block bg-green rounded-full w-4 h-4"
+                    : "hidden"
+                }`}
+              ></div>
+            </div>
+          ))}
         </td>
         <td className="px-6 py-4 text-center">S,M,L+3</td>
         <td className="px-6 py-4 text-center">{item.inventory}</td>
