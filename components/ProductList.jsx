@@ -102,22 +102,40 @@ const ProductList = ({ item }) => {
         </td>
 
         <td className="px-6 py-4 text-center">{item.discountPercentage}</td>
-        <td className="px-6 py-4 text-center">{item.primary_variant_name}</td>
+        <td className="px-6 py-4 text-center flex justify-center items-center">
+          <div
+            className={`bg-red rounded-full w-4 h-4 ${
+              item.primary_variants[0].name === "Red" ? "block" : "hidden"
+            }`}
+          ></div>
+          <div
+            className={`bg-blue rounded-full w-4 h-4 ${
+              item.primary_variants[1].name === "Blue" ? "block" : "hidden"
+            }`}
+          ></div>
+          <div
+            className={`bg-green rounded-full w-4 h-4 ${
+              item.primary_variants[2].name === "Green" ? "block" : "hidden"
+            }`}
+          ></div>
+        </td>
         <td className="px-6 py-4 text-center">S,M,L+3</td>
         <td className="px-6 py-4 text-center">{item.inventory}</td>
         <td className="px-6 py-4 text-center">{item.leadTime}</td>
-        <td className="px-6 py-4 text-right">
+        <td className="px-6 py-4 text-right w-40">
           {!isEditable ? (
-            <button
-              className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-              onClick={() => {
-                setIsEditable(true)
-              }}
-            >
-              Edit
-            </button>
+            <div className="text-center flex justify-center items-center">
+              <button
+                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                onClick={() => {
+                  setIsEditable(true)
+                }}
+              >
+                Edit
+              </button>
+            </div>
           ) : (
-            <>
+            <div className="text-center flex justify-center items-center">
               <button
                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 onClick={() => {
@@ -135,7 +153,7 @@ const ProductList = ({ item }) => {
               >
                 Submit
               </button>
-            </>
+            </div>
           )}
           {/* {isEditable && (
             <>
