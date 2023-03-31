@@ -47,7 +47,7 @@ const ProductList = ({ item }) => {
 
   return (
     <>
-      <tr className="bg-white border-b  dark:bg-gray-800 dark:border-gray-700">
+      <tr className="bg-white border-b  dark:bg-gray-800 dark:border-gray-700 h-2">
         <th
           scope="row"
           className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white max-w-[200px] overflow-hidden text-ellipsis"
@@ -289,7 +289,7 @@ const ProductList = ({ item }) => {
               </td>
               <td class="px-6 py-4 text-center">{item.primary_variant_name}</td>
               <td class="px-6 py-4 text-center">S,M,L+3</td>
-              <td class="px-6 py-4">{variant.inventory}</td>
+              <td class="px-6 py-4 text-center">{variant.inventory}</td>
               <td class="px-6 py-4 text-center">{item.leadTime}</td>
               <td class="px-6 py-4 text-right">
                 <a
@@ -324,7 +324,7 @@ const ProductList = ({ item }) => {
                   <td class="px-6 py-4 text-right">
                     <a
                       href="#"
-                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center"
                     >
                       Edit
                     </a>
