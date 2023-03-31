@@ -289,12 +289,12 @@ const ProductList = ({ item }) => {
               </td>
               <td class="px-6 py-4 text-center">{item.primary_variant_name}</td>
               <td class="px-6 py-4 text-center">S,M,L+3</td>
-              <td class="px-6 py-4 text-center">{variant.inventory}</td>
+              <td class="px-6 py-4 text-right">{variant.inventory}</td>
               <td class="px-6 py-4 text-center">{item.leadTime}</td>
               <td class="px-6 py-4 text-right">
                 <a
                   href="#"
-                  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center"
                 >
                   Edit
                 </a>
