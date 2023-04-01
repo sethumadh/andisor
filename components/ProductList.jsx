@@ -1,12 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState } from "react"
 import { useContext } from "react"
-import { useRouter } from "next/router"
 
 import { ProductContext } from "../context/ProductContext"
 
 const ProductList = ({ item }) => {
-  const router = useRouter()
   const [state, setState] = useState(false)
   const [state1, setState1] = useState("")
   const [isEditable, setIsEditable] = useState(false)
@@ -22,7 +20,6 @@ const ProductList = ({ item }) => {
     inventory: item.inventory,
     leadTime: item.leadTime,
   })
-  // console.log(formData)
 
   const handleChange = (e) => {
     setFormData((prevData) => {
@@ -42,12 +39,11 @@ const ProductList = ({ item }) => {
     })
     console.log(updatedData)
     updateData(updatedData)
-    // router.push("/")
   }
 
   return (
     <>
-      <tr className="bg-white border-b  dark:bg-gray-800 dark:border-gray-700 h-2">
+      <tr className="bg-white border-b  dark:bg-gray-800 dark:border-gray-700">
         <th
           scope="row"
           className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white max-w-[200px] overflow-hidden text-ellipsis"
@@ -81,7 +77,9 @@ const ProductList = ({ item }) => {
               />
             </div>
           ) : (
-            <p className="px-6 py-4 text-center"> {item.stock ? item.stock : "2852"}</p>
+            <p className="px-6 py-4 text-center">
+              {item.stock ? item.stock : "2852"}
+            </p>
           )}
         </td>
         <td>
@@ -100,8 +98,23 @@ const ProductList = ({ item }) => {
             <p className="px-6 py-4 text-center">{item?.price}</p>
           )}
         </td>
+        <td>
+          {isEditable ? (
+            <div className="flex justify-center items-center">
+              <input
+                className="max-w-[50px] text-center"
+                type="text"
+                placeholder={"discount"}
+                name="discountPercentage"
+                value={formData.discountPercentage}
+                onChange={handleChange}
+              />
+            </div>
+          ) : (
+            <p className="px-6 py-4 text-center">{item.discountPercentage}</p>
+          )}
+        </td>
 
-        <td className="px-6 py-4 text-center">{item.discountPercentage}</td>
         <td className="px-6 py-4 text-center flex justify-center items-center">
           {item?.primary_variants?.map((variant, i) => (
             <div key={i}>
@@ -130,8 +143,39 @@ const ProductList = ({ item }) => {
           ))}
         </td>
         <td className="px-6 py-4 text-center">S,M,L+3</td>
-        <td className="px-6 py-4 text-center">{item.inventory}</td>
-        <td className="px-6 py-4 text-center">{item.leadTime}</td>
+        <td>
+          {isEditable ? (
+            <div className="flex justify-center items-center">
+              <input
+                className="max-w-[50px] text-center"
+                type="text"
+                placeholder={"inventory"}
+                name="inventory"
+                value={formData.inventory}
+                onChange={handleChange}
+              />
+            </div>
+          ) : (
+            <p className="px-6 py-4 text-center">{item.inventory}</p>
+          )}
+        </td>
+        <td>
+          {isEditable ? (
+            <div className="flex justify-center items-center">
+              <input
+                className="max-w-[50px] text-center"
+                type="text"
+                placeholder={"lead time"}
+                name="leadTime"
+                value={formData.leadTime}
+                onChange={handleChange}
+              />
+            </div>
+          ) : (
+            <p className="px-6 py-4 text-center">{item.leadTime}</p>
+          )}
+        </td>
+
         <td className="px-6 py-4 text-center w-40">
           {!isEditable ? (
             <div className="text-center flex justify-center items-center">
@@ -274,7 +318,6 @@ const ProductList = ({ item }) => {
                 class="px-6 py-4 flex justify-end items-center font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 onClick={() => setState1(!state1)}
               >
-                {/* {item.title} */}
                 <span className="text-lg mr-2">{variant.name}</span>
                 <span
                   className={`${
@@ -294,7 +337,7 @@ const ProductList = ({ item }) => {
               <td class="px-6 py-4 text-center">
                 <a
                   href="#"
-                  class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center"
+                  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 >
                   Edit
                 </a>
@@ -324,7 +367,7 @@ const ProductList = ({ item }) => {
                   <td class="px-6 py-4 text-center">
                     <a
                       href="#"
-                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline text-center"
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
                       Edit
                     </a>

@@ -13,15 +13,8 @@ const Search = () => {
   const term = query.query
   console.log(searchresults)
 
-  // if (term && data.length > 0) {
-  //   const results = data.filter((item) =>
-  //     item?.title?.toLowerCase().includes(term)
-  //   )
-  //   setSearchresults(results)
-  // }
-
   useEffect(() => {
-    if (term) {
+    if (term?.trim().length != 0) {
       const results = data.filter((item) =>
         item?.title?.toLowerCase().includes(term)
       )
