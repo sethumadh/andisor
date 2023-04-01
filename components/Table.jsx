@@ -43,7 +43,7 @@ const Table = ({ data }) => {
                   </a>
                 </div>
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 <div className="flex items-center justify-center">
                   WHS
                   <a href="#">
@@ -61,7 +61,7 @@ const Table = ({ data }) => {
                   </a>
                 </div>
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 <div className="flex items-center justify-center">
                   Discount
                   <a href="#">
@@ -79,7 +79,7 @@ const Table = ({ data }) => {
                 </div>
               </th>
 
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 <div className="flex items-center justify-center">
                   Colour
                   <a href="#">
@@ -112,7 +112,7 @@ const Table = ({ data }) => {
                 </div>
               </th>
               <th scope="col" className="px-6 py-3">
-                <div class="flex items-center justify-center">
+                <div className="flex items-center justify-center">
                   Inventory
                   <a href="#">
                     <svg
