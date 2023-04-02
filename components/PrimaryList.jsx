@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { useContext } from "react"
 
 import { ProductContext } from "../context/ProductContext"
+import SubVariantList from "../components/SubVariantList"
 const PrimaryList = ({ variant, item }) => {
   const { data, updateData } = useContext(ProductContext)
   const [state1, setState1] = useState({
@@ -16,7 +17,8 @@ const PrimaryList = ({ variant, item }) => {
     discountPercentage: variant.discountPercentage,
     inventory: variant.inventory,
   })
-  const handleChange = (e) => {
+  const handleChangePrimary = (e) => {
+    console.log("onchange called")
     setPrimaryFormData((prevData) => {
       return {
         ...prevData,
@@ -25,23 +27,20 @@ const PrimaryList = ({ variant, item }) => {
     })
   }
   function handlePrimarySubmit(name) {
+    console.log("submitcalled")
     const updatedData = item?.primary_variants?.map((product) => {
       if (product.name === name) {
-        const newData = {
-          ...item,
-          primary_variants: [
-            ...item.primary_variants,
-            { ...product, ...primaryFormData },
-          ],
-        }
-        console.log("new data", newData)
+        const newData = { ...product, ...primaryFormData }
         return newData
-        
-      } else return item
+      } else return product
     })
-
-    console.log(updatedData)
-    // updateData(updatedData)
+    const newItem = { ...item, primary_variants: updatedData }
+    const newData = data.map((item) => {
+      if (item.id === newItem.id) return newItem
+      else return item
+    })
+    console.log("New Data", newData)
+    updateData(newData)
   }
   const handlePrimaryEdit = (bool) => {
     setIsPrimaryEditable(bool)
@@ -49,25 +48,23 @@ const PrimaryList = ({ variant, item }) => {
 
   return (
     <>
-      <tr
-        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-        onClick={() => {
-          if (state1[variant.name] === `${variant.name}-secondary_variant`) {
-            setState1((preState) => ({
-              ...preState,
-              [variant.name]: "",
-            }))
-          } else {
-            setState1((preState) => ({
-              ...preState,
-              [variant.name]: `${variant.name}-secondary_variant`,
-            }))
-          }
-        }}
-      >
+      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th
           scope="row"
           className="px-6 py-4 flex justify-end items-center font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          onClick={() => {
+            if (state1[variant.name] === `${variant.name}-secondary_variant`) {
+              setState1((preState) => ({
+                ...preState,
+                [variant.name]: "",
+              }))
+            } else {
+              setState1((preState) => ({
+                ...preState,
+                [variant.name]: `${variant.name}-secondary_variant`,
+              }))
+            }
+          }}
         >
           <span className="text-lg mr-2">{variant.name}</span>
           <span
@@ -83,18 +80,50 @@ const PrimaryList = ({ variant, item }) => {
                 className="max-w-[50px] text-center "
                 type="text"
                 placeholder={"Stock"}
-                onChange={handleChange}
                 name={"stock"}
-                value={variant.stock}
+                value={primaryFormData.stock}
+                onChange={handleChangePrimary}
               />
             </div>
           ) : (
             <p className="px-6 py-4 text-center">{variant.stock}</p>
           )}
         </td>
+        <td>
+          {isPrimaryEditable ? (
+            <div className="flex justify-center items-center">
+              <input
+                className="max-w-[50px] text-center "
+                type="text"
+                placeholder={"WHS/Price"}
+                name={"price"}
+                value={primaryFormData.price}
+                onChange={handleChangePrimary}
+              />
+            </div>
+          ) : (
+            <p className="px-6 py-4 text-center">{variant.price}</p>
+          )}
+        </td>
+        <td>
+          {isPrimaryEditable ? (
+            <div className="flex justify-center items-center">
+              <input
+                className="max-w-[50px] text-center "
+                type="text"
+                placeholder={"Discount"}
+                onChange={handleChangePrimary}
+                name={"discountPercentage"}
+                value={primaryFormData.discountPercentage}
+              />
+            </div>
+          ) : (
+            <p className="px-6 py-4 text-center">
+              {variant.discountPercentage}
+            </p>
+          )}
+        </td>
 
-        <td className="px-6 py-4 text-center">{item.price}</td>
-        <td className="px-6 py-4 text-center">{variant.discountPercentage}</td>
         <td className="px-6 py-4 text-center flex justify-center items-center">
           <div
             className={`${
@@ -113,8 +142,25 @@ const PrimaryList = ({ variant, item }) => {
           ></div>
         </td>
         <td className="px-6 py-4 text-center">S,M,L+3</td>
-        <td className="px-6 py-4 text-center">{variant.inventory}</td>
-        <td className="px-6 py-4 text-center">{item.leadTime}</td>
+        <td>
+          {isPrimaryEditable ? (
+            <div className="flex justify-center items-center">
+              <input
+                className="max-w-[50px] text-center "
+                type="text"
+                placeholder={"inventory"}
+                onChange={handleChangePrimary}
+                name={"inventory"}
+                value={primaryFormData.inventory}
+              />
+            </div>
+          ) : (
+            <p className="px-6 py-4 text-center">{variant.inventory}</p>
+          )}
+        </td>
+        <td>
+          <p className="px-6 py-4 text-center">{item.leadTime}</p>
+        </td>
         <td className="px-6 py-4 text-center w-40">
           {!isPrimaryEditable ? (
             <div className="text-center flex justify-center items-center">
@@ -152,34 +198,9 @@ const PrimaryList = ({ variant, item }) => {
       </tr>
 
       {state1[variant.name] === `${variant.name}-secondary_variant` &&
-        !isPrimaryEditable &&
-        variant.secondary_variants.length > 0 &&
-        variant.secondary_variants.map((secondary, i) => (
-          <tr key={i} className="bg-white dark:bg-gray-800">
-            <th
-              scope="row"
-              className="px-6 py-4 flex justify-end font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            >
-              {secondary.name}
-            </th>
-            <td className="px-6 py-4 text-center">2582</td>
-            <td className="px-6 py-4 text-center">{secondary.price}</td>
-            <td className="px-6 py-4 text-center">
-              {secondary.discountPercentage}
-            </td>
-            <td className="px-6 py-4 text-center">NA</td>
-            <td className="px-6 py-4 text-center">NA</td>
-            <td className="px-6 py-4 text-center">{secondary.inventory}</td>
-            <td className="px-6 py-4 text-center">{item.leadTime}</td>
-            <td className="px-6 py-4 text-center">
-              <a
-                href="#"
-                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-              >
-                Edit
-              </a>
-            </td>
-          </tr>
+        variant?.secondary_variants?.length > 0 &&
+        variant?.secondary_variants?.map((secondary, i) => (
+          <SubVariantList key={i} item={item} variant={variant} secondary={secondary} />
         ))}
     </>
   )
