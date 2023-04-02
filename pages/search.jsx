@@ -14,7 +14,7 @@ const Search = () => {
   console.log(searchresults)
 
   useEffect(() => {
-    if (term?.trim().length != 0) {
+    if (term) {
       const results = data.filter((item) =>
         item?.title?.toLowerCase().includes(term)
       )

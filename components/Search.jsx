@@ -4,6 +4,7 @@ import { useRouter } from "next/router"
 const SearchBar = () => {
   const [term, setTerm] = useState("")
   const [debounceTerm, setDebounceTerm] = useState("")
+  // const [searchCleanUp, setSearchCleanUp]= useState(true)
   const router = useRouter()
 
   useEffect(() => {
