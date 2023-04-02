@@ -13,12 +13,10 @@ const SearchBar = () => {
     return () => clearTimeout(timer)
   }, [debounceTerm])
   useEffect(() => {
-    if (term?.trim().length !== 0) {
+    if (term?.trim().length != 0) {
       router.push(`/search?query=${term}`)
     } else {
-      if (router.pathname === "/search") {
-        router.push("/search")
-      } 
+      if (router.pathname === "/search") router.push("/search")
     }
   }, [term])
 
