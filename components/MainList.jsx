@@ -1,9 +1,7 @@
-import React, {  useContext } from "react"
+import React from "react"
 
-import { ProductContext } from "../context/ProductContext"
 
 const MainList = ({ item,handleChange,handleSubmit, formData, isEditable, handleStateChange, handleEdit }) => {
-  const { data, updateData } = useContext(ProductContext)
   
   
   return (
@@ -101,6 +99,20 @@ const MainList = ({ item,handleChange,handleSubmit, formData, isEditable, handle
                 className={`${
                   variant.name == "Green"
                     ? "block bg-green rounded-full w-4 h-4"
+                    : "hidden"
+                }`}
+              ></div>
+              <div
+                className={`${
+                  variant.name == "Yellow"
+                    ? "block bg-yellow rounded-full w-4 h-4"
+                    : "hidden"
+                }`}
+              ></div>
+              <div
+                className={`${
+                  variant.name == "White"
+                    ? "block bg-white border-[1px] border-black rounded-full w-4 h-4"
                     : "hidden"
                 }`}
               ></div>
