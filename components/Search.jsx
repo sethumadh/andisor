@@ -18,9 +18,7 @@ const SearchBar = () => {
     } else {
       if (router.pathname === "/search") {
         router.push("/search")
-      } else if (router.pathname === "/") {
-        setTerm("")
-      }
+      } 
     }
   }, [term])
 
