@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 
-const SearchBar = () => {
+const Search = () => {
   const [term, setTerm] = useState("")
   const [debounceTerm, setDebounceTerm] = useState("")
   // const [searchCleanUp, setSearchCleanUp]= useState(true)
@@ -38,4 +38,4 @@ const SearchBar = () => {
     </>
   )
 }
-export default SearchBar
+export default Search
